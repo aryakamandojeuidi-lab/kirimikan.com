@@ -33,40 +33,60 @@
         .nav-link:hover, .nav-link.active { background-color: #e0f2fe; color: #0284c7; }
         .hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: #0284c7; }
 
-        /* --- GALERI GRID (PERBAIKAN HALUS) --- */
+        /* --- TAB BUTTON (PEMISAH KATEGORI) --- */
         .gallery-title { margin-bottom: 20px; font-size: 1.5rem; color: #0284c7; }
+        .tab-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .tab-btn {
+            padding: 10px 30px;
+            border: 2px solid #0284c7;
+            border-radius: 25px;
+            background: white;
+            color: #0284c7;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .tab-btn:hover { background: #f0f9ff; }
+        .tab-btn.active {
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+        }
+
+        /* --- GALERI GRID --- */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
-            gap: 15px; /* Jarak antar foto */
+            gap: 15px; 
         }
+        
+        /* Sembunyikan kategori yang tidak aktif */
+        .grid-content { display: none; animation: fadeIn 0.5s ease; }
+        .grid-content.active { display: grid; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .gallery-item { 
             position: relative; 
-            background: #e2e8f0; /* Warna placeholder sedikit lebih lembut */
-            border-radius: 12px; /* Sudut lebih membulat agar halus */
+            background: #e2e8f0; 
+            border-radius: 12px; 
             overflow: hidden; 
             aspect-ratio: 1/1; 
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Bayangan halus */
-            transition: all 0.3s ease; /* Transisi halus */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+            transition: all 0.3s ease; 
         }
         
-        /* Efek Hover Halus */
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
 
-        .gallery-item img, .gallery-item video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
+        .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
 
         .video-overlay { 
             position: absolute; 
@@ -90,9 +110,7 @@
             background-color: rgba(0,0,0,0.95); 
             backdrop-filter: blur(5px);
             padding: 20px;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            display: flex; justify-content: center; align-items: center; 
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -134,7 +152,14 @@
     <main class="container">
         <h2 class="gallery-title">Galeri Pengiriman</h2>
         
-        <div class="gallery-grid">
+        <!-- TOMBOL PEMISAH KATEGORI -->
+        <div class="tab-controls">
+            <button class="tab-btn active" onclick="switchTab('photos')"><i class="fas fa-camera"></i> Foto</button>
+            <button class="tab-btn" onclick="switchTab('videos')"><i class="fas fa-video"></i> Video</button>
+        </div>
+
+        <!-- GRID FOTO (Default Aktif) -->
+        <div id="grid-photos" class="gallery-grid grid-content active">
             <!-- FOTO 1-5 -->
             <div class="gallery-item" onclick="openModal('assets/foto1.jpg', 'img')">
                 <img src="assets/foto1.jpg" alt="Foto 1">
@@ -151,15 +176,10 @@
             <div class="gallery-item" onclick="openModal('assets/foto5.jpg', 'img')">
                 <img src="assets/foto5.jpg" alt="Foto 5">
             </div>
-
-            <!-- FOTO 6 & 7 DIHAPUS SESUAI PERMINTAAN -->
-            <!-- FOTO 8-16 (LANJUTAN) -->
+            <!-- FOTO 8-16 (6,7,9 dihapus) -->
             <div class="gallery-item" onclick="openModal('assets/foto8.jpg', 'img')">
                 <img src="assets/foto8.jpg" alt="Foto 8">
             </div>
-            
-            <!-- FOTO 9 DIHAPUS SESUAI PERMINTAAN -->
-            
             <div class="gallery-item" onclick="openModal('assets/foto10.jpg', 'img')">
                 <img src="assets/foto10.jpg" alt="Foto 10">
             </div>
@@ -181,8 +201,10 @@
             <div class="gallery-item" onclick="openModal('assets/foto16.jpg', 'img')">
                 <img src="assets/foto16.jpg" alt="Foto 16">
             </div>
+        </div>
 
-            <!-- VIDEO 1-8 -->
+        <!-- GRID VIDEO (Default Tersembunyi) -->
+        <div id="grid-videos" class="gallery-grid grid-content">
             <div class="gallery-item" onclick="openModal('assets/video1.mp4', 'video')">
                 <img src="assets/video1.jpg" alt="Video 1">
                 <div class="video-overlay"><i class="fas fa-play-circle play-icon"></i></div>
@@ -230,6 +252,27 @@
             document.querySelector('.nav-menu').classList.toggle('active');
         }
 
+        // --- LOGIKA SWITCH TAB ---
+        function switchTab(category) {
+            // 1. Reset tombol
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // 2. Sembunyikan semua grid
+            document.getElementById('grid-photos').classList.remove('active');
+            document.getElementById('grid-videos').classList.remove('active');
+
+            // 3. Aktifkan yang dipilih
+            if (category === 'photos') {
+                document.getElementById('grid-photos').classList.add('active');
+                buttons[0].classList.add('active');
+            } else {
+                document.getElementById('grid-videos').classList.add('active');
+                buttons[1].classList.add('active');
+            }
+        }
+
+        // --- LOGIKA MODAL ---
         const modal = document.getElementById("modalView");
         const modalContent = document.getElementById("modalContent");
 
