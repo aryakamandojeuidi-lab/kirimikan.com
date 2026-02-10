@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bettalover Express - Home</title>
     <!-- Font Modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <!-- Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -29,7 +29,10 @@
         /* --- HEADER & NAV --- */
         header { background: rgba(255, 255, 255, 0.98); position: fixed; top: 0; left: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
         nav { width: 100%; max-width: 600px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* HEADER LOGO: TETAP GAMBAR */
         .nav-logo-img { height: 40px; width: auto; object-fit: contain; }
+
         .nav-menu { display: flex; gap: 20px; }
         .nav-link { text-decoration: none; color: #334155; font-weight: 500; font-size: 0.9rem; cursor: pointer; padding: 5px 10px; border-radius: 5px; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { background-color: #e0f2fe; color: #0284c7; }
@@ -37,64 +40,42 @@
 
         /* --- HOME CONTENT --- */
         
-        /* ANIMASI LOGO KEREN */
+        /* LOGO BESAR DI HOME (GANTI JADI KOTAK NAMA) */
         .hero-logo-container {
             width: 180px;
             height: 180px;
             margin: 0 auto 30px;
             position: relative;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 20px; /* Bentuk Kotak dengan sudut bulat */
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15); /* Bayangan halus */
+            border: 2px solid #e0f2fe; /* Border tipis biru muda */
         }
 
-        .hero-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            /* Bayangan bercahaya (Glow) */
-            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5), 
-                        0 0 20px rgba(2, 132, 199, 0.4),
-                        0 0 40px rgba(2, 132, 199, 0.2);
-            /* Animasi Melayang */
-            animation: floatLogo 6s ease-in-out infinite;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal saat di hover */
-            cursor: pointer;
+        /* Teks Nama di dalam Kotak */
+        .hero-logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #0284c7;
+            text-align: center;
+            line-height: 1.1;
+            text-transform: uppercase;
         }
-
-        /* Efek saat Logo di-Hover (Disentuh Mouse/Jari) */
-        .hero-logo:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.8), 
-                        0 0 30px rgba(2, 132, 199, 0.6),
-                        0 0 60px rgba(2, 132, 199, 0.4);
-        }
-
-        @keyframes floatLogo {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Latar Belakang Geometris Halus di belakang logo */
-        .hero-bg-decoration {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 250px; height: 250px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.1) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulseBg 4s infinite;
-        }
-
-        @keyframes pulseBg {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-            100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+        .hero-logo-text span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #64748b;
+            text-transform: none;
+            margin-top: 5px;
         }
 
         h1 { font-size: 1.8rem; color: #0284c7; font-weight: 700; margin-bottom: 10px; position: relative; display: inline-block; }
-        /* Animasi garis bawah judul */
         h1::after {
             content: '';
             position: absolute;
@@ -109,7 +90,6 @@
 
         .tagline { font-size: 1rem; color: #64748b; margin-bottom: 25px; animation: fadeInText 1s ease-out; }
 
-        /* Kartu Info */
         .info-card { background: white; border-radius: 15px; padding: 25px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: left; opacity: 0; animation: slideUp 0.6s ease-out 0.2s forwards; }
         .info-card h3 { font-size: 1.1rem; color: #0284c7; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
         .info-row { display: flex; align-items: center; margin-bottom: 12px; color: #334155; font-size: 0.9rem; }
@@ -120,7 +100,6 @@
         .social-btn { width: 35px; height: 35px; border-radius: 50%; background: #f1f5f9; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; text-decoration: none; transition: 0.3s; }
         .social-btn:hover { background: #0284c7; color: white; transform: translateY(-3px); }
 
-        /* Tombol */
         .nav-buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; opacity: 0; animation: slideUp 0.6s ease-out 0.4s forwards; }
         .btn { padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; text-align: center; transition: 0.3s; width: 100%; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-primary { background-color: #0284c7; color: white; box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3); }
@@ -130,7 +109,6 @@
 
         footer { margin-top: 40px; font-size: 0.8rem; color: #94a3b8; text-align: center; }
 
-        /* Keyframes Animasi Masuk */
         @keyframes fadeInText { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -147,7 +125,7 @@
     <!-- HEADER NAVIGASI -->
     <header>
         <nav>
-            <!-- Logo Header Kecil -->
+            <!-- HEADER LOGO: GAMBAR TETAP ADA -->
             <img src="assets/logo.jpg" alt="Logo" class="nav-logo-img" onerror="this.src='https://z-cdn-media.chatglm.cn/files/f7b4fcfc-51aa-4632-b2cd-1c47239f77ca.jpg?auth_key=1870630281-3a14dd2d36fc41f7bf823a62546c2249-0-41068a1912bfad668ceb604a5f46a8b6'">
             
             <ul class="nav-menu">
@@ -161,14 +139,12 @@
     </header>
 
     <main class="container">
-        <!-- KONTEN HOME DENGAN ANIMASI LOGO -->
-        
-        <!-- Dekorasi Background Pulsing -->
-        <div class="hero-bg-decoration"></div>
-
+        <!-- LOGO BESAR DI HOME (DIGANTI JADI KOTAK NAMA) -->
         <div class="hero-logo-container">
-            <!-- LOGO UTAMA DENGAN ANIMASI -->
-            <img src="assets/logo.jpg" alt="Bettalover Logo" class="hero-logo" onerror="this.src='https://z-cdn-media.chatglm.cn/files/f7b4fcfc-51aa-4632-b2cd-1c47239f77ca.jpg?auth_key=1870630281-3a14dd2d36fc41f7bf823a62546c2249-0-41068a1912bfad668ceb604a5f46a8b6'">
+            <div class="hero-logo-text">
+                BETTA<br>LOVER
+                <span>EXPRESS</span>
+            </div>
         </div>
         
         <h1>Bettalover Express</h1>
