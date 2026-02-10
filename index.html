@@ -40,7 +40,7 @@
 
         /* --- HOME CONTENT --- */
         
-        /* FOTO UTAMA (PENGGANTI KOTAK NAMA) */
+        /* FOTO UTAMA (LOGO 3) */
         .hero-card {
             background: white;
             border-radius: 15px;
@@ -77,7 +77,7 @@
             pointer-events: none;
         }
 
-        /* JUDUL & TAGLINE DI BAWAH FOTO */
+        /* JUDUL & TAGLINE */
         h1 { font-size: 1.8rem; color: #0284c7; font-weight: 700; margin-bottom: 10px; position: relative; display: inline-block; }
         h1::after {
             content: '';
@@ -97,7 +97,8 @@
         .info-card h3 { font-size: 1.1rem; color: #0284c7; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
         .info-row { display: flex; align-items: center; margin-bottom: 12px; color: #334155; font-size: 0.9rem; }
         .info-row i { width: 30px; color: #0284c7; text-align: center; }
-        .info-row a { color: #334155; text-decoration: none; }
+        .info-row a, .info-row span { color: #334155; text-decoration: none; transition: color 0.3s; }
+        .info-row a:hover, .info-row span:hover { color: #0284c7; text-decoration: underline; cursor: pointer; }
         
         .social-row { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
         .social-btn { width: 35px; height: 35px; border-radius: 50%; background: #f1f5f9; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; text-decoration: none; transition: 0.3s; }
@@ -153,7 +154,7 @@
 
     <main class="container">
         
-        <!-- KOTAK 1 (PALING ATAS): FOTO UTAMA -->
+        <!-- KOTAK 1 (PALING ATAS): FOTO LOGO3 -->
         <div class="hero-card">
             <div class="hero-image" onclick="openModal('assets/logo3.jpg')">
                 <img src="assets/logo3.jpg" alt="Bettalover Express" onerror="this.src='https://picsum.photos/seed/betta/600/300'">
@@ -176,9 +177,12 @@
                 <i class="fas fa-envelope"></i>
                 <a href="mailto:ikanhiasjabotabek@gmail.com">ikanhiasjabotabek@gmail.com</a>
             </div>
+            <!-- ALAMAT JADI KLIKABLE KE GOOGLE MAPS -->
             <div class="info-row">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Bandara Soekarno Hatta</span>
+                <a href="https://maps.app.goo.gl/rhrFomkzsd43RMp88" target="_blank">
+                    Bandara Soekarno Hatta (Buka Maps)
+                </a>
             </div>
         </div>
 
