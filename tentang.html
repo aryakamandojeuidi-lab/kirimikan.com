@@ -4,33 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bettalover Express - Tentang Kami</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* (Copy CSS dari index.html agar style konsisten) */
+        /* --- CSS UTAMA --- */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { width: 100%; overflow-x: hidden; }
-        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #334155; line-height: 1.6; width: 100%; overflow-x: hidden; text-align: center; padding-top: 80px; padding-bottom: 40px; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #f8fafc; 
+            color: #334155; 
+            line-height: 1.8; 
+            width: 100%; 
+            overflow-x: hidden; 
+            text-align: center; 
+            padding-top: 80px; 
+            padding-bottom: 40px; 
+        }
         .container { width: 90%; max-width: 600px; margin: 0 auto; word-wrap: break-word; }
+        
+        /* --- HEADER & NAV --- */
         header { background: rgba(255, 255, 255, 0.98); position: fixed; top: 0; left: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
         nav { width: 100%; max-width: 600px; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo-img { height: 40px; width: auto; object-fit: contain; }
+        
+        /* LOGO TEKS */
+        .brand-text-logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #0284c7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .brand-text-logo span { color: #334155; font-weight: 400; }
+
         .nav-menu { display: flex; gap: 20px; }
         .nav-link { text-decoration: none; color: #334155; font-weight: 500; font-size: 0.9rem; cursor: pointer; padding: 5px 10px; border-radius: 5px; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { background-color: #e0f2fe; color: #0284c7; }
         .hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: #0284c7; }
-        
-        .card { background: white; border-radius: 15px; padding: 30px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: left; }
-        .card h2 { text-align: center; font-size: 1.5rem; color: #0284c7; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
-        .card p { margin-bottom: 15px; color: #475569; font-size: 0.95rem; }
-        .check-list { list-style: none; padding: 0; }
-        .check-list li { position: relative; padding-left: 30px; margin-bottom: 12px; color: #334155; font-size: 0.95rem; }
-        .check-list li i { position: absolute; left: 0; top: 4px; color: #0284c7; }
-        .nav-buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-top: 20px; }
-        .btn { padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; text-align: center; transition: 0.3s; width: 100%; border: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-secondary { background-color: white; color: #0284c7; border: 2px solid #0284c7; }
-        
+
+        /* --- CONTENT STYLE --- */
+        .card { background: white; border-radius: 15px; padding: 30px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: left; }
+        .card h2 { text-align: center; font-size: 1.4rem; color: #0284c7; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; line-height: 1.3; }
+        .card p { margin-bottom: 15px; color: #475569; font-size: 0.95rem; text-align: justify; }
+        .card p:last-child { margin-bottom: 0; }
+
+        /* FOTO UTAMA */
+        .hero-image-container {
+            width: 100%;
+            height: 250px;
+            background-color: #cbd5e1;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .hero-image-container:hover img { transform: scale(1.05); }
+        .zoom-hint {
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(0,0,0,0.6); color: white;
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 14px;
+        }
+
+        /* MODAL */
+        .modal { 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.95); 
+            padding: 20px; display: flex; justify-content: center; align-items: center; 
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show { opacity: 1; }
+        .modal-content { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 4px; transform: scale(0.9); transition: transform 0.3s ease; }
+        .modal.show .modal-content { transform: scale(1); }
+        .close-modal { position: absolute; top: 20px; right: 25px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2001; }
+
+        /* TOMBOL DOWNLOAD PDF */
+        .download-section { text-align: center; margin-top: 30px; }
+        .btn-download {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background-color: #dc2626; color: white; padding: 15px 25px; border-radius: 10px;
+            font-weight: 600; text-decoration: none; box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+            transition: all 0.3s ease; font-size: 0.95rem;
+        }
+        .btn-download:hover { background-color: #b91c1c; transform: translateY(-3px); box-shadow: 0 8px 12px rgba(220, 38, 38, 0.4); }
+        .download-note { font-size: 0.8rem; color: #64748b; margin-top: 8px; }
+
         @media (max-width: 768px) {
             .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: white; width: 100%; text-align: center; padding-top: 20px; transition: 0.3s; }
             .nav-menu.active { left: 0; }
@@ -42,7 +111,7 @@
 
     <header>
         <nav>
-            <img src="assets/logo.jpg" alt="Logo" class="nav-logo-img" onerror="this.src='https://z-cdn-media.chatglm.cn/files/f7b4fcfc-51aa-4632-b2cd-1c47239f77ca.jpg?auth_key=1870630281-3a14dd2d36fc41f7bf823a62546c2249-0-41068a1912bfad668ceb604a5f46a8b6'">
+            <a href="index.html" class="brand-text-logo">BETTA <span>LOVER</span></a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="tentang.html" class="nav-link active">Tentang Kami</a></li>
@@ -53,28 +122,90 @@
     </header>
 
     <main class="container">
+        <!-- KARTU 1: FOTO UTAMA -->
+        <div class="card" style="padding: 15px;">
+            <div class="hero-image-container" onclick="openModal('assets/foto1.jpg')">
+                <img src="assets/foto1.jpg" alt="Tentang Bettalover" onerror="this.src='https://picsum.photos/seed/betta/600/300'">
+                <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            </div>
+        </div>
+
+        <!-- KARTU 2: TATACARA PENGIRIMAN (TEKS DIRAPIHKAN) -->
+        <div class="card">
+            <h2>Tatacara Pengiriman Ikan</h2>
+            
+            <p>
+                Untuk pengiriman ikan hias via kargo pesawat, diperlukan kemasan yang aman untuk menjamin keamanan ikan dan keselamatan pesawat.
+            </p>
+            
+            <p>
+                <strong>Standar Packing:</strong> Ikan wajib dikemas dengan plastik dobel minimal 3 lapis.
+            </p>
+            
+            <p>
+                <strong>Material Box:</strong> Untuk kemasan luar, wajib menggunakan Styrofoam Garuda yang tebal. Kualitas Styrofoam ini berfungsi menjaga ikan dari guncangan saat pengiriman serta menjaga kestabilan tekanan udara di dalam kabin pesawat.
+            </p>
+
+            <p style="margin-bottom: 0;">
+                Dengan standar packing ini, ikan Anda aman sampai tujuan dengan tingkat survival yang tinggi.
+            </p>
+        </div>
+
+        <!-- KARTU 3: DESKRIPSI LAMA -->
         <div class="card">
             <h2>Tentang Bettalover Express</h2>
-            <p>Bettalover Express bergerak di bidang pengiriman ikan hias melalui kargo udara. Kami hadir sebagai solusi logistik khusus untuk komunitas pecinta ikan hias di seluruh Indonesia.</p>
-            <p>Kami memahami bahwa ikan hias adalah aset berharga yang membutuhkan penanganan khusus. Oleh karena itu, kami menerapkan standar keamanan tinggi dan pengemasan yang steril.</p>
-            <ul class="check-list">
-                <li><i class="fas fa-check-circle"></i> Berpengalaman dalam pengiriman ikan hias.</li>
-                <li><i class="fas fa-check-circle"></i> Mengutamakan keselamatan & ketepatan waktu.</li>
-                <li><i class="fas fa-check-circle"></i> Beroperasi via Kargo Bandara Soetta.</li>
-                <li><i class="fas fa-check-circle"></i> Packing steril (Ozon) & aman.</li>
-            </ul>
+            <p><strong>Bettalover Express menerima jasa pengiriman ikan hias hidup antar pulau ke seluruh Indonesia (Port to Port).</strong></p>
+            <p>Sebagai pedagang atau penghobi ikan yang menjual ikan, kadang-kadang kita menghadapi masalah mengenai cara pengiriman ikan hidup yang tidak bisa diterima oleh jasa pengiriman barang biasa.</p>
+            <p>Dibutuhkan surat dan dokumen yang sah dari karantina agar ikan bisa dikirim. Bagi sebagian orang, mengurus sendiri akan menghabiskan waktu banyak karena kita harus mengurus sendiri dari mulai karantina dan penentuan cargo pesawat.</p>
+            <p>Bettalover Express menjawab kebutuhan Anda semua. Kami bantu semua dokumen sampai selesai dan Anda tidak usah repot-repot menghabiskan waktu Anda yang lebih berharga, dan belum lagi pengurusan untuk uji laboratorium untuk jenis ikan tertentu seperti Koi, Mas, Koki, Komet dan lainnya.</p>
         </div>
-        
-        <div class="nav-buttons">
-            <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Home</a>
+
+        <!-- TOMBOL DOWNLOAD PDF -->
+        <div class="download-section">
+            <a href="assets/larangan-ikan.pdf" class="btn-download" target="_blank">
+                <i class="fas fa-file-pdf"></i> Download PDF Ikan Invasif
+            </a>
+            <p class="download-note">Klik untuk melihat daftar ikan yang dilarang dikirim.</p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="index.html" style="text-decoration: none; color: #64748b; font-size: 0.9rem;">&larr; Kembali ke Home</a>
         </div>
     </main>
+
+    <!-- MODAL -->
+    <div id="modalView" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+    </div>
 
     <script>
         function toggleMenu() {
             document.querySelector('.hamburger').classList.toggle('active');
             document.querySelector('.nav-menu').classList.toggle('active');
         }
+
+        const modal = document.getElementById("modalView");
+        const modalContent = document.getElementById("modalContent");
+
+        function openModal(source) {
+            modalContent.innerHTML = "";
+            const img = document.createElement("img");
+            img.src = source; img.className = "modal-content";
+            modalContent.appendChild(img);
+            modal.style.display = "flex";
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            modalContent.innerHTML = "";
+            setTimeout(() => { modal.style.display = "none"; }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) closeModal();
+        }
     </script>
 </body>
-  </html>
+</html>
